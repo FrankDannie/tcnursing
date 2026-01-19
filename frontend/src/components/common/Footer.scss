@@ -1,0 +1,30 @@
+.footer {
+    background: #0a2644;
+    color: #ffffff;
+    padding: 0;
+  
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  
+
+  }
+  
+  /* Mobile Responsive */
+  
+  @media (max-width: 768px) {
+    .footer {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+
+    }
+  }
+  

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine
-from pathlib import Path
+from app.routes import pages
 
 app = FastAPI(title="TCNursing Backend API")
 
@@ -18,3 +18,4 @@ app.add_middleware(
 )
 
 # Include routers
+app.include_router(pages.router)

@@ -1,1 +1,1 @@
-from .consent import ConsentCreate, ConsentRead
+from .page import PageBase, PageCreate, PageOut

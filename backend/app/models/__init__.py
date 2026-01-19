@@ -1,1 +1,1 @@
-from .consent import Consent
+from .page import Page

@@ -1,0 +1,60 @@
+@import "./variables";
+@import "./globals";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* ROOT */
+  html {
+    font-size: 14px;
+    min-height: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  /* BODY */
+  body {
+    font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  /* ROOT CONTAINER */
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+    /* Navbar */
+  
+    .navbar {
+        background-color: #305a87;
+      
+        .nav-link {
+          color: #fff;
+          transition: color 0.3s;
+      
+          &:hover {
+            color: #ffd700;
+          }
+        }
+      }
+
+  .footer {
+    position: static !important;
+    background-color: #305a87;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
