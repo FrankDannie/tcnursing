@@ -3,7 +3,7 @@ import Home from "../pages/Home/Home";
 import { JSX } from "react";
 import About from "../pages/About/About";
 import Courses from "../pages/Courses/Courses";
-// import Contact from "../pages/public/Contact";
+import Contact from "../pages/Contact/Contact";
 // import AdminDashboard from "../pages/admin/Dashboard";
 // import AdminPages from "../pages/admin/Pages";
 // import Login from "../pages/admin/Login";
@@ -20,7 +20,7 @@ export default function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/courses" element={<Courses />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} />
         <Route path="/admission" element={<Admission />} />
 {/* 
         <Route path="/admin/login" element={<Login />} /> */}
