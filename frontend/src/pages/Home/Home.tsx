@@ -6,7 +6,7 @@ import "./Home.scss";
 import coursesImg from "../../images/courses.jpg";
 import campusImg from "../../images/campus.png";
 import admissionImg from "../../images/admission.jpeg";
-import heroBg from "../../images/collegeentrance.jpg";
+import heroBg from "../../images/home/collegeentrance.jpg";
 
 
 export default function Home() {

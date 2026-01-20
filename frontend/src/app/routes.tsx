@@ -4,6 +4,7 @@ import { JSX } from "react";
 import About from "../pages/About/About";
 import Courses from "../pages/Courses/Courses";
 import Contact from "../pages/Contact/Contact";
+import CampusFacilities from "../pages/CampusFacilities/CampusFacilities";
 // import AdminDashboard from "../pages/admin/Dashboard";
 // import AdminPages from "../pages/admin/Pages";
 // import Login from "../pages/admin/Login";
@@ -22,6 +23,8 @@ export default function AppRoutes() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admission" element={<Admission />} />
+        <Route path="/campus/facilities" element={<CampusFacilities />} />
+
 {/* 
         <Route path="/admin/login" element={<Login />} /> */}
         {/* <Route
