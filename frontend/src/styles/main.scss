@@ -26,6 +26,7 @@
     background-color: #f8f9fa;
     color: #333;
     min-height: 100vh;
+    padding-top: 40px;
   }
   
   /* ROOT CONTAINER */
@@ -38,23 +39,66 @@
     /* Navbar */
   
     .navbar {
-        background-color: #305a87;
+        background: linear-gradient(
+          135deg,
+          #0f2a44 0%,
+          #163a5f 60%,
+          #1f4d6b 100%
+        );
+      
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+      
+        .navbar-brand {
+          color: #ffffff;
+          font-weight: 600;
+          font-size: 1.15rem;
+          letter-spacing: 0.4px;
+      
+          img {
+            height: 58px;
+          }
+        }
       
         .nav-link {
-          color: #fff;
-          transition: color 0.3s;
+          color: rgba(255, 255, 255, 0.88);
+          font-weight: 500;
+          margin-left: 20px;
+          transition: color 0.3s ease;
       
           &:hover {
-            color: #ffd700;
+            color: #2ca6a4;
           }
         }
       }
+      .navbar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0;
+        height: 72px;
+      
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* 🔑 LEFT & RIGHT */
+      }
+      
 
-  .footer {
-    position: static !important;
-    background-color: #305a87;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-  }
+      .footer {
+        background: linear-gradient(
+          135deg,
+          #0b1e2d 0%,
+          #0f2a44 60%,
+          #132f45 100%
+        );
+      
+        color: rgba(255, 255, 255, 0.85);
+        padding: 36px 16px;
+        text-align: center;
+      
+        p {
+          margin: 6px 0;
+          font-size: 0.95rem;
+          letter-spacing: 0.3px;
+        }
+      }
+      
   

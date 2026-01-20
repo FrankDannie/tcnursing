@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "../components/Home/Home";
+import Home from "../pages/Home/Home";
 import { JSX } from "react";
-// import About from "../pages/public/About";
+import About from "../pages/About/About";
 // import Courses from "../pages/public/Courses";
 // import Contact from "../pages/public/Contact";
 // import AdminDashboard from "../pages/admin/Dashboard";
@@ -18,8 +18,8 @@ export default function AppRoutes() {
   return (
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} /> */}
         <Route path="/admission" element={<Admission />} />
 {/* 

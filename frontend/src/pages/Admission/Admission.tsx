@@ -14,9 +14,15 @@ export default function Admission() {
           Application form and prospectus can be obtained on payment of ₹500
           by cash or DD drawn in favour of Chellakan Memorial Educational Trust.
         </p>
-        <a className="download" href="/forms/Application.pdf" download>
-          Download Application Form
-        </a>
+        <a
+  href="/forms/Application.pdf"
+  download="Application.pdf"
+  className="download"
+>
+  Download Application Form
+</a>
+
+
       </section>
 
       <section className="block">
