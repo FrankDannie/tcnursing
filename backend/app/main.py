@@ -6,6 +6,7 @@ from app.database import Base, engine
 from app.routes import pages
 from app.routes import auth
 from app.routes import gallery
+from app.routes import news
 
 app = FastAPI(title="TCNursing Backend API")
 
@@ -31,3 +32,4 @@ app.mount(
 app.include_router(pages.router)
 app.include_router(auth.router)
 app.include_router(gallery.router)
+app.include_router(news.router)

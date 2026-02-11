@@ -2,6 +2,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import "./AdminDashboard.scss";
 import GalleryManager from "./gallery/GalleryManager";
+import NewsManager from "./NewsManager";
 
 export type AdminSection =
   | "gallery"
@@ -19,7 +20,7 @@ export default function AdminDashboard() {
 
       <main className="admin-content">
         {section === "gallery" && <GalleryManager/>}
-        {section === "news" && <h2>News & Announcements</h2>}
+        {section === "news" && <NewsManager/>}
         {section === "courses" && <h2>Courses</h2>}
         {section === "faculty" && <h2>Faculty</h2>}
         {section === "contact" && <h2>Contact Messages</h2>}
