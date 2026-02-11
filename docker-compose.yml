@@ -21,6 +21,10 @@ services:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     volumes:
       - ./backend:/app
+      - ./backend/app/static/images/home:/app/static/images/home
+      - ./backend/app/static/images/campus_facilities:/app/static/images/campus_facilities
+      - ./backend/app/static/images/about_founder:/app/static/images/about_founder
+      - ./backend/app/static/images/chairman:/app/static/images/chairman
     command: uvicorn app.main:app --host 0.0.0.0 --port ${BACKEND_PORT} --reload
 
   frontend:

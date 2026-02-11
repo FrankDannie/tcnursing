@@ -5,13 +5,12 @@ import About from "../pages/About/About";
 import Courses from "../pages/Courses/Courses";
 import Contact from "../pages/Contact/Contact";
 import CampusFacilities from "../pages/CampusFacilities/CampusFacilities";
-// import AdminDashboard from "../pages/admin/Dashboard";
-// import AdminPages from "../pages/admin/Pages";
-// import Login from "../pages/admin/Login";
+import Login from "../pages/admin/AdminLogin"
+import AdminDashboard from "../pages/admin/AdminDashboard"
 import Admission from "../pages/Admission/Admission";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access_token");
   return token ? children : <Navigate to="/admin/login" />;
 };
 
@@ -25,9 +24,9 @@ export default function AppRoutes() {
         <Route path="/admission" element={<Admission />} />
         <Route path="/campus/facilities" element={<CampusFacilities />} />
 
-{/* 
-        <Route path="/admin/login" element={<Login />} /> */}
-        {/* <Route
+
+        <Route path="/admin/login" element={<Login />} /> 
+        <Route
           path="/admin"
           element={
             <ProtectedRoute>
@@ -35,7 +34,7 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/admin/pages"
           element={
             <ProtectedRoute>

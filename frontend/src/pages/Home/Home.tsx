@@ -1,40 +1,57 @@
 import React, { useEffect, useState } from "react";
 import "./Home.scss";
 
-// Feature images (unchanged)
+// ✅ Static feature images (KEEP SAME)
 import coursesImg from "../../images/courses.jpg";
 import campusImg from "../../images/campus.png";
 import admissionImg from "../../images/admission.jpeg";
 
-// 🔥 Auto-load ALL hero images
-const heroImages = Object.values(
-  import.meta.glob("../../images/home/*.{jpg,jpeg,png,webp}", {
-    eager: true,
-    import: "default",
-  })
-) as string[];
+const BASE_URL = "http://localhost:8000";
+const screen = "home";
 
 export default function Home() {
+  const [heroImages, setHeroImages] = useState<string[]>([]);
   const [current, setCurrent] = useState(0);
 
-  // Auto-slide every 5 seconds
+  // 🔥 Load hero images from API
   useEffect(() => {
+    async function loadHeroImages() {
+      try {
+        const res = await fetch(
+           `${BASE_URL}/api/gallery/${screen}`
+        );
+        const data: string[] = await res.json();
+        setHeroImages(data);
+      } catch (err) {
+        console.error("Failed to load hero images", err);
+      }
+    }
+
+    loadHeroImages();
+  }, []);
+
+  // Auto slide
+  useEffect(() => {
+    if (heroImages.length === 0) return;
+
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [heroImages]);
 
   return (
     <div className="home">
-      {/* HERO SLIDER */}
+      {/* HERO SLIDER (API DRIVEN) */}
       <section className="hero premium-hero">
         {heroImages.map((img, index) => (
           <div
-            key={index}
+            key={img}
             className={`hero-slide ${index === current ? "active" : ""}`}
-            style={{ backgroundImage: `url(${img})` }}
+            style={{
+              backgroundImage: `url(${BASE_URL}/images/${screen}/${img})`,
+            }}
           />
         ))}
 
@@ -49,7 +66,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES */}
+      {/* FEATURES (STATIC IMAGES) */}
       <section className="features">
         <div className="feature-card">
           <img src={coursesImg} alt="Courses" />
@@ -68,7 +85,7 @@ export default function Home() {
         <div className="feature-card">
           <img src={admissionImg} alt="Admissions" />
           <h3>Admissions</h3>
-          <p>Start your journey with us. Check admission details.</p>
+          <p>Start your journey with us.</p>
           <a href="/admission" className="btn-outline">Get Started</a>
         </div>
       </section>

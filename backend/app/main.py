@@ -1,7 +1,11 @@
+from app.core.config import IMAGE_ROOT
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine
 from app.routes import pages
+from app.routes import auth
+from app.routes import gallery
 
 app = FastAPI(title="TCNursing Backend API")
 
@@ -17,5 +21,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount(
+    "/images",
+    StaticFiles(directory=IMAGE_ROOT),
+    name="images"
+)
+
 # Include routers
 app.include_router(pages.router)
+app.include_router(auth.router)
+app.include_router(gallery.router)
