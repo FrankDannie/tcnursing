@@ -1,29 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./CampusFacilities.scss";
 
-// Auto import all images
-const images = import.meta.glob("../../images/facilities/*.{jpg,jpeg,png,webp}", {
-  eager: true,
-  as: "url"
-});
+const BASE_URL = "http://localhost:8000";
+const screen = "campus_facilities";
 
 const CampusFacilities: React.FC = () => {
+  const [images, setImages] = useState<string[]>([]);
 
-  const imageList = Object.values(images);
+  useEffect(() => {
+    async function loadImages() {
+      try {
+        const res = await fetch(
+         `${BASE_URL}/api/gallery/${screen}`
+        );
+        const data: string[] = await res.json();
+        setImages(data);
+      } catch (err) {
+        console.error("Failed to load campus images", err);
+      }
+    }
+
+    loadImages();
+  }, []);
 
   return (
     <div className="facilities-page">
-
       <h1 className="page-title">Campus Facilities Gallery</h1>
 
       <div className="gallery-grid">
-        {imageList.map((img: string, index: number) => (
-          <div className="gallery-card" key={index}>
-            <img src={img} alt={`Facility ${index + 1}`} />
+        {images.map((img) => (
+          <div className="gallery-card" key={img}>
+            <img
+              src={`${BASE_URL}/images/${screen}/${img}`}
+              alt="Campus Facility"
+            />
           </div>
         ))}
       </div>
-
     </div>
   );
 };
