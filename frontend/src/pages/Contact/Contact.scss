@@ -124,6 +124,52 @@
     }
   }
   
+  .contact-form-card {
+    margin-top: 40px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+  }
+  
+  .contact-form-card h3 {
+    margin-bottom: 20px;
+  }
+  
+  .contact-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contact-form-card input,
+  .contact-form-card textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  .contact-form-card button {
+    background: #0056b3;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .contact-form-card button:hover {
+    background: #003f8a;
+  }
+  
+  .form-message {
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  
   /* =========================
      RESPONSIVE
   ========================= */

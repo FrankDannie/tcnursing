@@ -4,6 +4,7 @@ import "./AdminDashboard.scss";
 import GalleryManager from "./gallery/GalleryManager";
 import NewsManager from "./NewsManager";
 import CourseManager from "./CourseManager";
+import ContactManager from "./ContactManager";
 
 export type AdminSection =
   | "gallery"
@@ -22,7 +23,7 @@ export default function AdminDashboard() {
         {section === "gallery" && <GalleryManager/>}
         {section === "news" && <NewsManager/>}
         {section === "courses" && <CourseManager/>}
-        {section === "contact" && <h2>Contact Messages</h2>}
+        {section === "contact" && < ContactManager />}
       </main>
     </div>
   );

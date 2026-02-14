@@ -8,6 +8,7 @@ from app.routes import auth
 from app.routes import gallery
 from app.routes import news
 from app.routes import courses
+from app.routes import contact_info
 
 app = FastAPI(title="TCNursing Backend API")
 
@@ -35,3 +36,4 @@ app.include_router(auth.router)
 app.include_router(gallery.router)
 app.include_router(news.router)
 app.include_router(courses.router)
+app.include_router(contact_info.router)
