@@ -45,3 +45,41 @@ def delete_news(news_id: int, db: Session = Depends(get_db)):
         db.delete(news)
         db.commit()
     return {"message": "Deleted"}
+
+@router.put("/{news_id}")
+def update_news(
+    news_id: int,
+    title: str = Form(...),
+    content: str = Form(...),
+    image: UploadFile = File(None),
+    db: Session = Depends(get_db),
+):
+    news = db.query(News).filter(News.id == news_id).first()
+
+    if not news:
+        return {"error": "News not found"}
+
+    # Update text fields
+    news.title = title
+    news.content = content
+
+    # If new image uploaded
+    if image:
+        image_name = image.filename
+
+        # Optional: delete old image
+        if news.image:
+            old_path = os.path.join(UPLOAD_DIR, news.image)
+            if os.path.exists(old_path):
+                os.remove(old_path)
+
+        # Save new image
+        with open(os.path.join(UPLOAD_DIR, image_name), "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+
+        news.image = image_name
+
+    db.commit()
+    db.refresh(news)
+
+    return news

@@ -14,6 +14,8 @@ export default function NewsManager() {
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
+  const [editingId, setEditingId] = useState<number | null>(null);
+
   useEffect(() => {
     fetchNews();
   }, []);
@@ -21,19 +23,18 @@ export default function NewsManager() {
   const fetchNews = async () => {
     try {
       const res = await fetch("http://localhost:8000/api/news");
-  
+
       if (!res.ok) {
         console.error("Failed to fetch news:", res.status);
         setNews([]);
         return;
       }
-  
+
       const data = await res.json();
-  
+
       if (Array.isArray(data)) {
         setNews(data);
       } else if (Array.isArray(data.news)) {
-        // common FastAPI pattern
         setNews(data.news);
       } else {
         console.error("Unexpected response shape:", data);
@@ -44,7 +45,6 @@ export default function NewsManager() {
       setNews([]);
     }
   };
-  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,31 +54,50 @@ export default function NewsManager() {
     formData.append("content", content);
     if (image) formData.append("image", image);
 
-    await fetch("http://localhost:8000/api/news", {
-      method: "POST",
-      body: formData,
-    });
+    if (editingId) {
+      // UPDATE
+      await fetch(`http://localhost:8000/api/news/${editingId}`, {
+        method: "PUT",
+        body: formData,
+      });
+    } else {
+      // CREATE
+      await fetch("http://localhost:8000/api/news", {
+        method: "POST",
+        body: formData,
+      });
+    }
 
-    setTitle("");
-    setContent("");
-    setImage(null);
+    resetForm();
     fetchNews();
   };
 
   const handleDelete = async (id: number) => {
     const confirmed = window.confirm(
-      "Are you sure you want to delete this news item? This action cannot be undone."
+      "Are you sure you want to delete this news item?"
     );
-  
     if (!confirmed) return;
-  
+
     await fetch(`http://localhost:8000/api/news/${id}`, {
       method: "DELETE",
     });
-  
+
     fetchNews();
   };
-  
+
+  const handleEdit = (item: NewsItem) => {
+    setEditingId(item.id);
+    setTitle(item.title);
+    setContent(item.content);
+    setImage(null); // new image optional
+  };
+
+  const resetForm = () => {
+    setTitle("");
+    setContent("");
+    setImage(null);
+    setEditingId(null);
+  };
 
   return (
     <div className="news-manager">
@@ -90,7 +109,7 @@ export default function NewsManager() {
           <input
             type="text"
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
@@ -99,7 +118,7 @@ export default function NewsManager() {
           <label>Content</label>
           <textarea
             value={content}
-            onChange={e => setContent(e.target.value)}
+            onChange={(e) => setContent(e.target.value)}
             required
           />
         </div>
@@ -108,41 +127,63 @@ export default function NewsManager() {
           <label>Image</label>
           <input
             type="file"
-            onChange={e =>
+            onChange={(e) =>
               setImage(e.target.files ? e.target.files[0] : null)
             }
           />
         </div>
 
-        <button type="submit" className="submit-btn">
-          Add News
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="submit-btn">
+            {editingId ? "Update News" : "Add News"}
+          </button>
+
+          {editingId && (
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={resetForm}
+            >
+              Cancel
+            </button>
+          )}
+        </div>
       </form>
 
       <div className="news-list">
-        {news.map(n => (
+        {news.map((n) => (
           <div className="admin-news-card" key={n.id}>
             {n.image && (
-        <img
-          src={`http://localhost:8000/images/news/${n.image}`}
-          alt={n.title}
-        />
-      )}
+              <img
+                src={`http://localhost:8000/images/news/${n.image}`}
+                alt={n.title}
+              />
+            )}
 
             <div className="content">
               <h4>{n.title}</h4>
               <p>{n.content}</p>
             </div>
 
-            <button
-              className="delete-btn"
-              onClick={() => handleDelete(n.id)}
-            >
-              Delete
-            </button>
+            <div className="card-actions">
+              <button
+                className="edit-btn"
+                onClick={() => handleEdit(n)}
+                title="Edit"
+              >
+                ✏️
+              </button>
+
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(n.id)}
+                title="Delete"
+              >
+                🗑️
+              </button>
+            </div>
           </div>
         ))}
-      
       </div>
     </div>
   );

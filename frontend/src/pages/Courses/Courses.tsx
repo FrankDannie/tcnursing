@@ -1,74 +1,87 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./Courses.scss";
 
-const Courses: React.FC = () => {
+interface Course {
+  id: number;
+  title: string;
+  subtitle: string;
+  duration: string;
+  council_no?: string;
+  affiliation?: string;
+  objectives?: string;
+  program_details?: string;
+}
+
+export default function Courses() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/courses/")
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching courses:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="courses-page">Loading courses...</div>;
+  }
+
   return (
     <div className="courses-page">
+      {courses.map((course) => {
+        let objectives: string[] = [];
 
-      {/* MSc Nursing Section */}
-      <section className="course-card">
-        <h1>Master of Science in Nursing</h1>
-        <h2>M.Sc. (Nursing)</h2>
+        try {
+          objectives = course.objectives
+            ? JSON.parse(course.objectives)
+            : [];
+        } catch {
+          objectives = [];
+        }
 
-        <div className="course-info">
-          <span>Duration: 2 Years</span>
-          <span>Indian Nursing Council No: 2904076</span>
-        </div>
+        return (
+          <section className="course-card" key={course.id}>
+            <h1>{course.title}</h1>
+            <h2>{course.subtitle}</h2>
 
-        <p className="affiliation">
-          M.Sc (Nursing) affiliated by The Tamil Nadu Dr. M.G.R Medical University
-          <br />
-          Order No: Proc.No.Affln.II(3) dated 26.07.2013
-        </p>
-      </section>
+            <div className="course-info">
+              <span>Duration: {course.duration}</span>
+              {course.council_no && (
+                <span>Indian Nursing Council No: {course.council_no}</span>
+              )}
+            </div>
 
-      {/* BSc Nursing Section */}
-      <section className="course-card">
-        <h1>Bachelor of Science in Nursing</h1>
-        <h2>B.Sc. (Nursing)</h2>
+            {course.affiliation && (
+              <p className="affiliation">{course.affiliation}</p>
+            )}
 
-        <div className="course-info">
-          <span>Duration: 4 Years</span>
-        </div>
+            {objectives.length > 0 && (
+              <div className="course-section">
+                <h3>Objectives of the Course</h3>
+                <ul>
+                  {objectives.map((obj, index) => (
+                    <li key={index}>{obj}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-        <div className="course-section">
-          <h3>Objectives of the Course</h3>
-
-          <ul>
-            <li>
-              Provide high standards of education by adopting holistic approach.
-            </li>
-            <li>
-              Develop knowledge, skills and attitude in comprehensive patient care.
-            </li>
-            <li>
-              Demonstrate competence in nursing skills and health team coordination.
-            </li>
-            <li>
-              Develop leadership qualities of integrity and responsibility.
-            </li>
-            <li>
-              Practice ethical values in personal and professional life.
-            </li>
-          </ul>
-        </div>
-
-        <div className="course-section">
-          <h3>Programme of Study</h3>
-
-          <p>
-            The duration of the Basic B.Sc Nursing Programme is 4 years including
-            6 months of integrated practice. Examination will be conducted by the
-            Tamil Nadu Dr. M.G.R Medical University in the month of August every
-            year. Monthly term tests will be conducted and marks will be sent
-            through post.
-          </p>
-        </div>
-
-      </section>
-
+            {course.program_details && (
+              <div className="course-section">
+                <h3>Programme of Study</h3>
+                <p>{course.program_details}</p>
+              </div>
+            )}
+          </section>
+        );
+      })}
     </div>
   );
-};
-
-export default Courses;
+}
