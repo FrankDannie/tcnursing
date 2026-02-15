@@ -37,27 +37,31 @@ export default function News() {
   
 
   return (
-<div className="news-page">
-  <h1>News & Announcements</h1>
-
-  {news.map(item => (
-    <article className="news-card" key={item.id}>
-      {item.image && (
-        <div className="image-wrapper">
-          <img
-            src={`http://localhost:8000/images/news/${item.image}`}
-            alt={item.title}
-          />
-        </div>
+    <div className="news-page">
+      <h1>News & Announcements</h1>
+  
+      {news.length === 0 ? (
+        <p className="no-news">No news to be displayed.</p>
+      ) : (
+        news.map(item => (
+          <article className="news-card" key={item.id}>
+            {item.image && (
+              <div className="image-wrapper">
+                <img
+                  src={`http://localhost:8000/images/news/${item.image}`}
+                  alt={item.title}
+                />
+              </div>
+            )}
+  
+            <div className="news-content">
+              <h3>{item.title}</h3>
+              <p>{item.content}</p>
+            </div>
+          </article>
+        ))
       )}
-
-      <div className="news-content">
-        <h3>{item.title}</h3>
-        <p>{item.content}</p>
-      </div>
-    </article>
-  ))}
-</div>
-
+    </div>
   );
+  
 }
