@@ -9,10 +9,11 @@ from app.routes import gallery
 from app.routes import news
 from app.routes import courses
 from app.routes import contact_info
+from app.routes import admission
 
 app = FastAPI(title="TCNursing Backend API")
 
-# Base.metadata.drop_all(bind=engine)
+Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 # CORS
@@ -37,3 +38,4 @@ app.include_router(gallery.router)
 app.include_router(news.router)
 app.include_router(courses.router)
 app.include_router(contact_info.router)
+app.include_router(admission.router)

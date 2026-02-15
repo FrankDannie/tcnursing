@@ -1,6 +1,28 @@
+import { useEffect, useState } from "react";
 import "./Admission.scss";
 
+interface AdmissionData {
+  has_pdf: any;
+  id?: number;
+  application_info: string;
+  eligibility: string;
+  candidate_selection: string;
+  submission_documents: string;
+  programme_details: string;
+}
+
 export default function Admission() {
+  const [data, setData] = useState<AdmissionData | null>(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/admission")
+      .then(res => res.json())
+      .then(res => setData(res))
+      .catch(() => {});
+  }, []);
+
+  if (!data) return <div className="container">Loading...</div>;
+
   return (
     <section className="admission container">
       <header className="page-header">
@@ -10,43 +32,37 @@ export default function Admission() {
 
       <section className="block">
         <h3>Application Form</h3>
-        <p>
-          Application form and prospectus can be obtained on payment of ₹500
-          by cash or DD drawn in favour of Chellakan Memorial Educational Trust.
-        </p>
-        <a
-  href="/forms/Application.pdf"
-  download="Application.pdf"
-  className="download"
->
-  Download Application Form
-</a>
-
-
+        <p>{data.application_info}</p>
+        {data.has_pdf && (
+  <a
+    href="http://localhost:8000/api/admission/download"
+    className="download"
+  >
+    Download Application Form
+  </a>
+)}
       </section>
 
       <section className="block">
         <h3>Eligibility</h3>
-        <p>12 years of schooling with Physics, Chemistry & Biology.</p>
-        <p>Candidate must be 17 years old on or before 31st December.</p>
+        <p>{data.eligibility}</p>
       </section>
 
       <section className="block">
         <h3>Application Submission</h3>
-        <ul>
-          <li>HSC / Equivalent Mark Sheet</li>
-          <li>Transfer Certificate</li>
-          <li>Conduct Certificate</li>
-          <li>Community Certificate</li>
-          <li>Medical Fitness Certificate</li>
-        </ul>
+        <p style={{ whiteSpace: "pre-line" }}>
+          {data.submission_documents}
+        </p>
+      </section>
+
+      <section className="block">
+        <h3>Candidate Selection</h3>
+        <p>{data.candidate_selection}</p>
       </section>
 
       <section className="block">
         <h3>Programme of Study</h3>
-        <p>
-          Duration: 4 years including 6 months of integrated practice.
-        </p>
+        <p>{data.programme_details}</p>
       </section>
     </section>
   );
