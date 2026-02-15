@@ -1,0 +1,83 @@
+.about-manager {
+    width: 100%;
+    min-height: 100vh;
+    background: #f5f7fb;
+    padding: 60px 20px;
+  
+    /* FORCE vertical layout */
+    display: block !important;
+  }
+  
+  .about-manager {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Title */
+  .about-manager h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1e3a8a;
+  }
+  
+  /* Make sure labels + textarea stack vertically */
+  .about-manager label,
+  .about-manager textarea,
+  .about-manager button {
+    display: block;
+    width: 100%;
+  }
+  
+  /* Labels */
+  .about-manager label {
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Textareas */
+  .about-manager textarea {
+    min-height: 160px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #dcdcdc;
+    font-size: 14px;
+    resize: vertical;
+    background: #ffffff;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+  }
+  
+  .about-manager textarea:focus {
+    outline: none;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.12);
+  }
+  
+  /* Button */
+  .about-manager button {
+    margin-top: 40px;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #1e3a8a;
+    color: #ffffff;
+    transition: all 0.2s ease;
+  }
+  
+  .about-manager button:hover {
+    background: #162d66;
+    transform: translateY(-2px);
+  }
+  
+  .about-manager button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }

@@ -6,14 +6,27 @@ const BASE_URL = "http://localhost:8000";
 const founderScreen = "about_founder";
 const chairmanScreen = "chairman";
 
+interface AboutData {
+  id?: number;
+  founder_text: string;
+  vice_chairman_text: string;
+  history: string;
+  philosophy: string;
+  college_aims: string;
+}
+
 const About: React.FC = () => {
+  const [data, setData] = useState<AboutData | null>(null);
   const [founderImage, setFounderImage] = useState<string | null>(null);
   const [chairmanImage, setChairmanImage] = useState<string | null>(null);
 
   useEffect(() => {
+    fetch(`${BASE_URL}/api/about`)
+      .then(res => res.json())
+      .then(res => setData(res));
+
     async function loadImages() {
       try {
-        // Founder Image
         const founderRes = await fetch(
           `${BASE_URL}/api/gallery/${founderScreen}`
         );
@@ -24,7 +37,6 @@ const About: React.FC = () => {
           );
         }
 
-        // Chairman Image
         const chairmanRes = await fetch(
           `${BASE_URL}/api/gallery/${chairmanScreen}`
         );
@@ -35,12 +47,14 @@ const About: React.FC = () => {
           );
         }
       } catch (err) {
-        console.error("Failed to load about images", err);
+        console.error("Failed to load images", err);
       }
     }
 
     loadImages();
   }, []);
+
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="about-page">
@@ -49,53 +63,38 @@ const About: React.FC = () => {
 
         <div className="founder-card">
           <h3>Founder</h3>
-          {founderImage && (
-            <img src={founderImage} alt="Founder" />
-          )}
-          <p>
-            Our CHAIRMAN / CORRESPONDENT: <strong>Mr. C. Thasian</strong>,
-            has been a visionary leader dedicated to advancing nursing
-            education and healthcare excellence.
-          </p>
+          {founderImage && <img src={founderImage} alt="Founder" />}
+          <p>{data.founder_text}</p>
         </div>
 
         <div className="founder-card">
           <h3>Vice Chairman</h3>
-          {chairmanImage && (
-            <img src={chairmanImage} alt="Vice Chairman" />
-          )}
-          <p>
-            <strong>Mrs. Mariamma Thasian</strong>, Vice Chairman of
-            Thasiah College of Nursing.
-          </p>
+          {chairmanImage && <img src={chairmanImage} alt="Vice Chairman" />}
+          <p>{data.vice_chairman_text}</p>
         </div>
 
       </section>
 
       <section className="content-section">
         <h3>History</h3>
-        <p>
-          Thasiah College of Nursing, Marthandam is a self-supporting
-          Nursing College imparting nursing education for students
-          belonging to weaker sections of society.
-        </p>
+        <p>{data.history}</p>
       </section>
 
       <section className="content-section">
         <h3>Philosophy</h3>
         <ul>
-          <li>Nursing is a dynamic art and science.</li>
-          <li>Learning happens in an environment of freedom.</li>
-          <li>Focus on professional and personal development.</li>
+          {data.philosophy.split("\n").map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
         </ul>
       </section>
 
       <section className="content-section">
         <h3>College Aims</h3>
         <ul>
-          <li>Provide academic excellence with practical experience.</li>
-          <li>Uplift weaker sections through nursing education.</li>
-          <li>Develop talented healthcare professionals.</li>
+          {data.college_aims.split("\n").map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
         </ul>
       </section>
 
