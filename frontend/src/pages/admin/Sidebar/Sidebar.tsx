@@ -1,4 +1,4 @@
-import { AdminSection } from "./AdminDashboard";
+import { AdminSection } from "./Dashboard/AdminDashboard";
 import "./Sidebar.scss";
 
 const items: { key: AdminSection; label: string }[] = [

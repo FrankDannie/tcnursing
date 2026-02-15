@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import "./AdminDashboard.scss";
-import GalleryManager from "./gallery/GalleryManager";
-import NewsManager from "./NewsManager";
-import CourseManager from "./CourseManager";
-import ContactManager from "./ContactManager";
-import AdmissionManager from "./AdmissionManager";
+import GalleryManager from "../Gallery/GalleryManager";
+import NewsManager from "../News/NewsManager";
+import CourseManager from "../Course/CourseManager";
+import ContactManager from "../Contact/ContactManager";
+import AdmissionManager from "../Admission/AdmissionManager";
 
 export type AdminSection =
   | "gallery"

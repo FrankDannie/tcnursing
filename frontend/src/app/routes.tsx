@@ -5,8 +5,8 @@ import About from "../pages/About/About";
 import Courses from "../pages/Courses/Courses";
 import Contact from "../pages/Contact/Contact";
 import CampusFacilities from "../pages/CampusFacilities/CampusFacilities";
-import Login from "../pages/admin/AdminLogin"
-import AdminDashboard from "../pages/admin/AdminDashboard"
+import Login from "../pages/Admin/Login/AdminLogin"
+import AdminDashboard from "../pages/Admin/Dashboard/AdminDashboard"
 import Admission from "../pages/Admission/Admission";
 import News from "../pages/News/News";
 
