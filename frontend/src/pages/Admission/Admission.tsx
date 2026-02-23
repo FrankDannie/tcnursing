@@ -13,7 +13,7 @@ interface AdmissionData {
 
 export default function Admission() {
   const [data, setData] = useState<AdmissionData | null>(null);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/admission`)

@@ -36,7 +36,7 @@ const ContactManager: React.FC = () => {
   const [form, setForm] = useState<ContactForm>(emptyForm);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/contact-info`)

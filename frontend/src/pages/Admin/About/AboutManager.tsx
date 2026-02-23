@@ -21,7 +21,7 @@ const emptyData: AboutData = {
 export default function AboutManager() {
   const [form, setForm] = useState<AboutData>(emptyData);
   const [saving, setSaving] = useState(false);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/about`)

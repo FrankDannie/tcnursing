@@ -23,7 +23,7 @@ export default function AdmissionManager() {
   const [form, setForm] = useState<AdmissionData>(emptyData);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [saving, setSaving] = useState(false);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/admission`)

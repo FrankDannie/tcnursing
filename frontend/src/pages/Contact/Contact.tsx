@@ -3,7 +3,7 @@ import "./Contact.scss";
 
 const Contact: React.FC = () => {
   const [data, setData] = useState<any>(null);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/contact-info`)
