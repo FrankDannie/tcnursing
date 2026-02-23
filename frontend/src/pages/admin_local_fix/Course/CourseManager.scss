@@ -1,0 +1,142 @@
+.course-manager {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .course-manager h2 {
+    margin-bottom: 20px;
+  }
+  
+  .course-manager form {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+  }
+  
+  .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  
+  .form-group textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    min-height: 60px;
+    font-size: 14px;
+  }
+  
+  .course-manager button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    font-size: 14px;
+    margin-right: 8px;
+  }
+  
+  .course-manager button:hover {
+    opacity: 0.9;
+  }
+  
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .course-card-admin {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .course-card-admin h4 {
+    margin: 0;
+  }
+  
+  .course-card-admin button {
+    background: transparent;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .course-card-admin button:hover {
+    color: #007bff;
+  }
+
+  .objectives-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .objective-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eef3ff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  .objective-item button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #d9534f;
+  }
+  
+
+  .objective-input button {
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .objective-input button:hover {
+    opacity: 0.9;
+  }
+
+  .delete-btn {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    width: 28px;      // small width
+    height: 28px;     // small height
+    border-radius: 50%; // makes it circle
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: 0.2s ease;
+  }
+  
+  .delete-btn:hover {
+    background: #d9363e;
+    transform: scale(1.1);
+  }
+  

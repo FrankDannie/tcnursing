@@ -1,0 +1,38 @@
+.admission-manager {
+    max-width: 900px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
+    h2 {
+      margin-bottom: 10px;
+    }
+  
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+  
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+  
+    button {
+      width: 200px;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #003366;
+      color: white;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background: #002244;
+    }
+  }
