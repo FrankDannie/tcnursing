@@ -9,4 +9,5 @@ SCREENS = {
     "campus_facilities": {"single": False},
     "about_founder": {"single": True},
     "chairman": {"single": True},
+    "success_stories": {"single": False},
 }

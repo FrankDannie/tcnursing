@@ -7,6 +7,7 @@ import CourseManager from "../Course/CourseManager";
 import ContactManager from "../Contact/ContactManager";
 import AdmissionManager from "../Admission/AdmissionManager";
 import AboutManager from "../About/AboutManager";
+import SuccessStoriesManager from "../SuccessStories/SuccessStoriesManager";
 
 export type AdminSection =
   | "gallery"
@@ -14,6 +15,7 @@ export type AdminSection =
   | "admission"
   | "courses"
   | "about"
+  | "successstory"
   | "contact";
 
 export default function AdminDashboard() {
@@ -28,6 +30,7 @@ export default function AdminDashboard() {
         {section === "news" && <NewsManager/>}
         {section === "admission" && <AdmissionManager/>}
         {section === "courses" && <CourseManager/>}
+        {section === "successstory" && <SuccessStoriesManager/>}
         {section === "about" && <AboutManager/>}
         {section === "contact" && < ContactManager />}
       </main>

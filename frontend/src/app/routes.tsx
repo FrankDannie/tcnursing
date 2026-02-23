@@ -9,6 +9,7 @@ import Login from "../pages/Admin/Login/AdminLogin"
 import AdminDashboard from "../pages/Admin/Dashboard/AdminDashboard"
 import Admission from "../pages/Admission/Admission";
 import News from "../pages/News/News";
+import SuccessStories from "../pages/SuccessStories/SuccessStories";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const token = localStorage.getItem("access_token");
@@ -22,6 +23,7 @@ export default function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/SuccessStories" element={<SuccessStories />} />
         <Route path="/admission" element={<Admission />} />
         <Route path="/campus/facilities" element={<CampusFacilities />} />
         <Route path="/news" element={<News />} />

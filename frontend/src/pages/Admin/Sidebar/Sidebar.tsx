@@ -7,6 +7,7 @@ const items: { key: AdminSection; label: string }[] = [
   { key: "admission", label: "admission" },
   { key: "courses", label: "Courses" },
   { key: "about", label: "About" },
+  { key: "successstory", label: "successstory" },
   { key: "contact", label: "Contact" },
 ];
 

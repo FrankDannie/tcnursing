@@ -25,6 +25,7 @@ services:
       - ./backend/app/static/images/campus_facilities:/app/static/images/campus_facilities
       - ./backend/app/static/images/about_founder:/app/static/images/about_founder
       - ./backend/app/static/images/chairman:/app/static/images/chairman
+      - ./backend/app/static/images/success_stories:/app/static/images/success_stories
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000
 
   frontend:
