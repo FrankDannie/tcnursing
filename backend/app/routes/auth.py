@@ -31,7 +31,6 @@ def create_admin(data: dict):
         username=data["username"],
         password=data["password"]
     )
-    print("adminfrank", admin)
     db.add(admin)
     db.commit()
     return {"status": "admin created"}

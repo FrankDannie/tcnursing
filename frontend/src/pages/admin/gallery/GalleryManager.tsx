@@ -14,7 +14,7 @@ const screens: { key: Screen; label: string; single: boolean }[] = [
   { key: "chairman", label: "Chairman", single: true },
 ];
 
-const BASE_URL = "http://localhost:8000/images";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export default function GalleryManager() {
   const [screen, setScreen] = useState<Screen>("home");
@@ -126,7 +126,7 @@ export default function GalleryManager() {
                   {selected.has(img) ? "✓" : ""}
                 </span>
               )}
-              <img src={`${BASE_URL}/${screen}/${img}`} />
+              <img src={`${BASE_URL}/images/${screen}/${img}`} />
             </div>
           ))}
         </div>

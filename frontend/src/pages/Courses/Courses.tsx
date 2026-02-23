@@ -15,9 +15,10 @@ interface Course {
 export default function Courses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/courses/")
+    fetch(`${API_BASE}/api/courses/`)
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);

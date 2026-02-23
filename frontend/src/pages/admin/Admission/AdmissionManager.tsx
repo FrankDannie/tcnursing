@@ -23,9 +23,10 @@ export default function AdmissionManager() {
   const [form, setForm] = useState<AdmissionData>(emptyData);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [saving, setSaving] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/admission")
+    fetch(`${API_BASE}/api/admission`)
       .then(res => res.json())
       .then(res => {
         if (res) setForm(res);
@@ -54,8 +55,8 @@ export default function AdmissionManager() {
 
     const method = form.id ? "PUT" : "POST";
     const url = form.id
-      ? `http://localhost:8000/api/admission/${form.id}`
-      : `http://localhost:8000/api/admission`;
+      ? `${API_BASE}/api/admission/${form.id}`
+      : `${API_BASE}/api/admission`;
 
     await fetch(url, {
       method,

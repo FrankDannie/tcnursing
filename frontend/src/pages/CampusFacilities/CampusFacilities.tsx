@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CampusFacilities.scss";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const screen = "campus_facilities";
 
 const CampusFacilities: React.FC = () => {

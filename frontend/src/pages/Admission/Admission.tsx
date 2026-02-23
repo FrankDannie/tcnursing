@@ -13,15 +13,18 @@ interface AdmissionData {
 
 export default function Admission() {
   const [data, setData] = useState<AdmissionData | null>(null);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/admission")
+    fetch(`${API_BASE}/api/admission`)
       .then(res => res.json())
       .then(res => setData(res))
       .catch(() => {});
   }, []);
 
   if (!data) return <div className="container">Loading...</div>;
+
+  const doc_url = `${API_BASE}/api/admission/download`
 
   return (
     <section className="admission container">
@@ -35,7 +38,7 @@ export default function Admission() {
         <p>{data.application_info}</p>
         {data.has_pdf && (
   <a
-    href="http://localhost:8000/api/admission/download"
+    href="doc_url"
     className="download"
   >
     Download Application Form

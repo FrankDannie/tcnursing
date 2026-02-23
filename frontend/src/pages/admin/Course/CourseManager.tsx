@@ -15,6 +15,7 @@ interface Course {
 export default function CourseManager() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   const [form, setForm] = useState({
     title: "",
@@ -34,7 +35,7 @@ export default function CourseManager() {
 
   const fetchCourses = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/courses/");
+      const res = await fetch(`${API_BASE}/api/courses/`);
       if (!res.ok) throw new Error("Failed to fetch courses");
       const data = await res.json();
       setCourses(data);
@@ -57,14 +58,14 @@ export default function CourseManager() {
     try {
       if (editingId) {
         await fetch(
-          `http://localhost:8000/api/courses/${editingId}`,
+          `${API_BASE}/api/courses/${editingId}`,
           {
             method: "PUT",
             body: formData,
           }
         );
       } else {
-        await fetch("http://localhost:8000/api/courses/", {
+        await fetch(`${API_BASE}/api/courses/`, {
           method: "POST",
           body: formData,
         });
@@ -102,7 +103,7 @@ export default function CourseManager() {
   };
 
   const handleDelete = async (id: number) => {
-    await fetch(`http://localhost:8000/api/courses/${id}`, {
+    await fetch(`${API_BASE}/api/courses/${id}`, {
       method: "DELETE",
     });
     fetchCourses();

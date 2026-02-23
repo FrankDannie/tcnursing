@@ -16,13 +16,15 @@ export default function NewsManager() {
 
   const [editingId, setEditingId] = useState<number | null>(null);
 
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
   useEffect(() => {
     fetchNews();
   }, []);
 
   const fetchNews = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/news");
+      const res = await fetch(`${API_BASE}/api/news`);
 
       if (!res.ok) {
         console.error("Failed to fetch news:", res.status);
@@ -56,13 +58,13 @@ export default function NewsManager() {
 
     if (editingId) {
       // UPDATE
-      await fetch(`http://localhost:8000/api/news/${editingId}`, {
+      await fetch(`${API_BASE}/api/news/${editingId}`, {
         method: "PUT",
         body: formData,
       });
     } else {
       // CREATE
-      await fetch("http://localhost:8000/api/news", {
+      await fetch(`${API_BASE}/api/news`, {
         method: "POST",
         body: formData,
       });
@@ -78,7 +80,7 @@ export default function NewsManager() {
     );
     if (!confirmed) return;
 
-    await fetch(`http://localhost:8000/api/news/${id}`, {
+    await fetch(`${API_BASE}/api/news/${id}`, {
       method: "DELETE",
     });
 
@@ -155,7 +157,7 @@ export default function NewsManager() {
           <div className="admin-news-card" key={n.id}>
             {n.image && (
               <img
-                src={`http://localhost:8000/images/news/${n.image}`}
+                src={`${API_BASE}/images/news/${n.image}`}
                 alt={n.title}
               />
             )}

@@ -21,9 +21,10 @@ const emptyData: AboutData = {
 export default function AboutManager() {
   const [form, setForm] = useState<AboutData>(emptyData);
   const [saving, setSaving] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/about")
+    fetch(`${API_BASE}/api/about`)
       .then(res => res.json())
       .then(res => {
         if (res) setForm(res);
@@ -41,8 +42,8 @@ export default function AboutManager() {
 
     const method = form.id ? "PUT" : "POST";
     const url = form.id
-      ? `http://localhost:8000/api/about/${form.id}`
-      : `http://localhost:8000/api/about`;
+      ? `${API_BASE}/api/about/${form.id}`
+      : `${API_BASE}/api/about`;
 
     await fetch(url, {
       method,

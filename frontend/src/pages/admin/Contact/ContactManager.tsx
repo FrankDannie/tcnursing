@@ -36,9 +36,10 @@ const ContactManager: React.FC = () => {
   const [form, setForm] = useState<ContactForm>(emptyForm);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/contact-info")
+    fetch(`${API_BASE}/api/contact-info`)
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -61,8 +62,8 @@ const ContactManager: React.FC = () => {
 
       const method = form.id ? "PUT" : "POST";
       const url = form.id
-        ? `http://localhost:8000/api/contact-info/${form.id}`
-        : `http://localhost:8000/api/contact-info`;
+        ? `${API_BASE}/api/contact-info/${form.id}`
+        : `${API_BASE}/api/contact-info`;
 
       await fetch(url, {
         method,

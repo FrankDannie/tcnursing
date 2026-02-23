@@ -10,9 +10,10 @@ interface NewsItem {
 
 export default function News() {
   const [news, setNews] = useState<NewsItem[]>([]);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/news")
+    fetch(`${API_BASE}/api/news`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}`);
@@ -48,7 +49,7 @@ export default function News() {
             {item.image && (
               <div className="image-wrapper">
                 <img
-                  src={`http://localhost:8000/images/news/${item.image}`}
+                  src={`${API_BASE}/images/news/${item.image}`}
                   alt={item.title}
                 />
               </div>

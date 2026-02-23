@@ -6,7 +6,8 @@ export type Screen =
   | "about_founder"
   | "chairman";
 
-const BASE_URL = "http://localhost:8000/api/gallery";
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+  const BASE_URL = `${API_BASE}/api/gallery`;
 
 /** Get images for a screen */
 export async function getImages(screen: Screen): Promise<string[]> {
