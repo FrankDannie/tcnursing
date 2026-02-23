@@ -58,8 +58,8 @@ export default function Home() {
         <div className="hero-overlay" />
 
         <div className="hero-content">
-          <h1>Welcome to Thasiah College of Nursing</h1>
-          <p>Where Education Meets Excellence</p>
+          <h1>Welcome to Thasiah College of Nursing.</h1>
+          <p>Where Education Meets Excellence.</p>
           <a href="/admission" className="btn-primary">
             Apply Now
           </a>
