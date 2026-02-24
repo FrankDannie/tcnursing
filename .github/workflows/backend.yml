@@ -41,8 +41,9 @@ jobs:
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:latest
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:${{ github.sha }}
 
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: tsnursing-backend
-          images: ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:${{ github.sha }}
+      - name: Deploy to Azure Container App (Prod)
+        run: |
+          az containerapp update \
+            --name tsnursing-backend \
+            --resource-group tcnursing-rg \
+            --image ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:${{ github.sha }}
