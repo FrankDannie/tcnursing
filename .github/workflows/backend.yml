@@ -40,3 +40,9 @@ jobs:
 
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:latest
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:${{ github.sha }}
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: tsnursing-backend-prod
+          images: ${{ secrets.ACR_LOGIN_SERVER }}/tsnursing-backend:${{ github.sha }}
