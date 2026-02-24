@@ -13,7 +13,7 @@ export default function News() {
   const API_BASE = import.meta.env.VITE_API_BASE_URL ;
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/news`)
+    fetch(`${API_BASE}/api/news/`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}`);
