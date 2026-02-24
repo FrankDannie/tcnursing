@@ -48,7 +48,7 @@ export default function SuccessStoriesManager() {
       });
     } else {
       // ✅ CREATE
-      await fetch(`${API_BASE}/success-stories`, {
+      await fetch(`${API_BASE}/success-stories/`, {
         method: "POST",
         body: data,
       });

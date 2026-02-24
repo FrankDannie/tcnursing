@@ -24,7 +24,7 @@ export default function NewsManager() {
 
   const fetchNews = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/news`);
+      const res = await fetch(`${API_BASE}/api/news/`);
 
       if (!res.ok) {
         console.error("Failed to fetch news:", res.status);
@@ -64,7 +64,7 @@ export default function NewsManager() {
       });
     } else {
       // CREATE
-      await fetch(`${API_BASE}/api/news`, {
+      await fetch(`${API_BASE}/api/news/`, {
         method: "POST",
         body: formData,
       });
