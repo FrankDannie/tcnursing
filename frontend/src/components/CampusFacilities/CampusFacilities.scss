@@ -1,0 +1,96 @@
+.facilities-page {
+  background: #ffffff;
+  padding: 60px 20px 80px;
+  max-width: 1300px;
+  margin: auto;
+  font-family: "Inter", sans-serif;
+}
+
+/* HEADER */
+
+.facilities-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.facilities-header h1 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.facilities-header p {
+  color: #6b7280;
+  font-size: 15px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* GALLERY */
+
+.gallery-grid {
+  column-count: 3;
+  column-gap: 22px;
+}
+
+.gallery-card {
+  break-inside: avoid;
+  margin-bottom: 22px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.gallery-card img {
+  width: 100%;
+  display: block;
+  transition: transform .4s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .gallery-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+
+  .facilities-header h1 {
+    font-size: 24px;
+  }
+}

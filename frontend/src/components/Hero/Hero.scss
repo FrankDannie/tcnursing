@@ -1,0 +1,84 @@
+.hero {
+    position: relative;
+    height: 65vh;
+    overflow: hidden;
+  }
+  
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: all 1s ease;
+  }
+  
+  .hero-slide.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(2, 6, 23, 0.85),
+      rgba(2, 6, 23, 0.3)
+    );
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin-left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+  }
+  
+  .hero-content h4 {
+    color: #38bdf8;
+    letter-spacing: 2px;
+  }
+  
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+  }
+  
+  .hero-content span {
+    color: #22d3ee;
+  }
+  
+  .hero-content p {
+    margin-top: 16px;
+  }
+  
+  .hero-buttons {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+  }
+  
+  .btn-primary {
+    padding: 12px 28px;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  
+  .btn-outline {
+    padding: 2px 28px;
+    border: 2px solid white;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  }

@@ -4,7 +4,7 @@ import { JSX } from "react";
 import About from "../pages/About/About";
 import Courses from "../pages/Courses/Courses";
 import Contact from "../pages/Contact/Contact";
-import CampusFacilities from "../pages/CampusFacilities/CampusFacilities";
+import CampusFacilities from "../components/CampusFacilities/CampusFacilities";
 import Login from "../pages/Admin/Login/AdminLogin"
 import AdminDashboard from "../pages/Admin/Dashboard/AdminDashboard"
 import Admission from "../pages/Admission/Admission";

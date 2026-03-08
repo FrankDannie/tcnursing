@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
-import logo from "../../images/tnclogo.jpg";
+import logo from "../../images/tnclogo.png";
 
 export default function Navbar() {
   return (

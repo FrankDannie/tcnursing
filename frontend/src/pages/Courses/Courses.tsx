@@ -14,25 +14,14 @@ interface Course {
 
 export default function Courses() {
   const [courses, setCourses] = useState<Course[]>([]);
-  const [loading, setLoading] = useState(true);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     fetch(`${API_BASE}/api/courses/`)
       .then((res) => res.json())
-      .then((data) => {
-        setCourses(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching courses:", err);
-        setLoading(false);
-      });
+      .then(setCourses)
+      .catch(console.error);
   }, []);
-
-  if (loading) {
-    return <div className="courses-page">Loading courses...</div>;
-  }
 
   return (
     <div className="courses-page">
@@ -43,19 +32,19 @@ export default function Courses() {
           objectives = course.objectives
             ? JSON.parse(course.objectives)
             : [];
-        } catch {
-          objectives = [];
-        }
+        } catch {}
 
         return (
-          <section className="course-card" key={course.id}>
+          <div className="course-card" key={course.id}>
             <h1>{course.title}</h1>
+
             <h2>{course.subtitle}</h2>
 
             <div className="course-info">
-              <span>Duration: {course.duration}</span>
+              <span>{course.duration}</span>
+
               {course.council_no && (
-                <span>Indian Nursing Council No: {course.council_no}</span>
+                <span>INC No: {course.council_no}</span>
               )}
             </div>
 
@@ -65,10 +54,11 @@ export default function Courses() {
 
             {objectives.length > 0 && (
               <div className="course-section">
-                <h3>Objectives of the Course</h3>
+                <h3>Objectives</h3>
+
                 <ul>
-                  {objectives.map((obj, index) => (
-                    <li key={index}>{obj}</li>
+                  {objectives.map((o, i) => (
+                    <li key={i}>{o}</li>
                   ))}
                 </ul>
               </div>
@@ -76,11 +66,11 @@ export default function Courses() {
 
             {course.program_details && (
               <div className="course-section">
-                <h3>Programme of Study</h3>
+                <h3>Programme</h3>
                 <p>{course.program_details}</p>
               </div>
             )}
-          </section>
+          </div>
         );
       })}
     </div>
