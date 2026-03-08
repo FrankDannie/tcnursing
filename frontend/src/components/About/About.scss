@@ -27,3 +27,23 @@
     color: #475569;
     line-height: 1.7;
   }
+
+  /* 📱 Mobile */
+@media (max-width: 768px) {
+
+  .about-container {
+    grid-template-columns: 1fr;   /* stack image and text */
+    gap: 30px;
+    text-align: center;
+  }
+
+  .about-text h2 {
+    font-size: 26px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 220px;
+  }
+
+}

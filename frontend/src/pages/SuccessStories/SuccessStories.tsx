@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "./SuccessStories.scss";  
+import "./SuccessStories.scss";
 
 export default function SuccessStories() {
   const [stories, setStories] = useState<any[]>([]);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL ;
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const loadStories = async () => {
@@ -16,29 +16,55 @@ export default function SuccessStories() {
   }, []);
 
   return (
-    <div className="success-grid">
-      {stories.map((story) => (
-        <div className="success-card" key={story.id}>
-          {story.photo_url && (
-            <img src={`${API_BASE}${story.photo_url}`} alt={story.name} />
-          )}
+    <div className="success-stories">
 
-          <h3>{story.name}</h3>
+      {stories.map((story, index) => (
 
-          <p className="meta">
-            <strong>{story.degree}</strong> | {story.academic_year}
-          </p>
+        <div
+          className={`success-story ${index % 2 !== 0 ? "reverse" : ""}`}
+          key={story.id}
+        >
 
-          <p className="city">{story.city_in_germany}</p>
-
-          <p className="story">{story.short_story}</p>
-
-          <div className="timeline">
-            <span>Started: {story.start_year}</span>
-            <span>Moved: {story.moved_year}</span>
+          <div className="story-image">
+            {story.photo_url && (
+              <img src={`${API_BASE}${story.photo_url}`} alt={story.name} />
+            )}
           </div>
+
+          <div className="story-content">
+
+            <h3>{story.name}</h3>
+
+            <p className="meta">
+              {story.degree} • {story.academic_year}
+            </p>
+
+            <p className="city">{story.city_in_germany}</p>
+
+            <p className="story-text">{story.short_story}</p>
+
+            <div className="timeline">
+            {(story.start_year || story.moved_year) && (
+  <div className="timeline">
+
+    {story.start_year && (
+      <span>Started {story.start_year}</span>
+    )}
+
+    {story.moved_year && (
+      <span>Moved to Germany {story.moved_year}</span>
+    )}
+
+  </div>
+)}
+            </div>
+
+          </div>
+
         </div>
+
       ))}
+
     </div>
   );
 }

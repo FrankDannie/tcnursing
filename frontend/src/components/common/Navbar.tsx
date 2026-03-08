@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./Navbar.scss";
 import logo from "../../images/tnclogo.png";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="navbar">
       <div className="container navbar-inner">
@@ -11,14 +14,20 @@ export default function Navbar() {
           <span>Thasiah College of Nursing</span>
         </Link>
 
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/courses">Courses</Link>
-          <Link to="/admission">Admission</Link>
-          <Link to="/SuccessStories">SuccessStories</Link>
-          <Link to="/news">News</Link>
-          <Link to="/contact">Contact</Link>
+        <div
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </div>
+
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link to="/courses" onClick={() => setMenuOpen(false)}>Courses</Link>
+          <Link to="/admission" onClick={() => setMenuOpen(false)}>Admission</Link>
+          <Link to="/news" onClick={() => setMenuOpen(false)}>News</Link>
+          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
         </nav>
       </div>
     </header>

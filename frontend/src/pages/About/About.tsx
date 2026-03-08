@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./About.scss";
+import SuccessStories from "../SuccessStories/SuccessStories";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const founderScreen = "about_founder";
 const chairmanScreen = "chairman";
@@ -31,6 +32,7 @@ const About: React.FC = () => {
           `${BASE_URL}/api/gallery/${founderScreen}`
         );
         const founderData: string[] = await founderRes.json();
+
         if (founderData.length > 0) {
           setFounderImage(
             `${BASE_URL}/images/${founderScreen}/${founderData[0]}`
@@ -41,13 +43,14 @@ const About: React.FC = () => {
           `${BASE_URL}/api/gallery/${chairmanScreen}`
         );
         const chairmanData: string[] = await chairmanRes.json();
+
         if (chairmanData.length > 0) {
           setChairmanImage(
             `${BASE_URL}/images/${chairmanScreen}/${chairmanData[0]}`
           );
         }
       } catch (err) {
-        console.error("Failed to load images", err);
+        console.error("Image load failed", err);
       }
     }
 
@@ -59,43 +62,155 @@ const About: React.FC = () => {
   return (
     <div className="about-page">
 
-      <section className="founders">
+        {/* ===============================
+          FOUNDER SECTION
+      =============================== */}
 
-        <div className="founder-card">
-          <h3>Founder</h3>
-          {founderImage && <img src={founderImage} alt="Founder" />}
-          <p>{data.founder_text}</p>
+      <section className="leader-section">
+
+      <div className="leader-overlay" />
+
+      <div className="leader-container">
+
+        <div className="leader-text">
+
+          <h1>FOUNDER'S MESSAGE</h1>
+
+          <p className="leader-designation">
+          MR.C.THASIAN
+          </p>
+
+          <p className="leader-message">
+            {data.founder_text}
+          </p>
+
         </div>
 
-        <div className="founder-card">
-          <h3>Vice Chairman</h3>
-          {chairmanImage && <img src={chairmanImage} alt="Vice Chairman" />}
-          <p>{data.vice_chairman_text}</p>
+        <div className="leader-image">
+
+        {founderImage && <img src={founderImage} alt="Founder" />}
+
+        </div>
+
+      </div>
+
+      </section>
+
+      {/* ===============================
+          GROUP LEADER MESSAGE SECTION
+      =============================== */}
+
+      <section className="leader-section">
+
+        <div className="leader-overlay" />
+
+        <div className="leader-container">
+
+          <div className="leader-text">
+
+            <h1>VICE-CHAIRMAN'S MESSAGE</h1>
+
+            <p className="leader-designation">
+            MRS. MARIAMMA THASIAN
+            </p>
+
+            <p className="leader-message">
+              {data.vice_chairman_text}
+            </p>
+
+          </div>
+
+          <div className="leader-image">
+
+            {chairmanImage && (
+              <img src={chairmanImage} alt="Chairman" />
+            )}
+
+          </div>
+
         </div>
 
       </section>
 
-      <section className="content-section">
+
+      {/* ===============================
+        HISTORY
+      ================================ */}
+
+      <section className="info-section">
+
+      <div className="info-card">
+
         <h3>History</h3>
+
         <p>{data.history}</p>
+
+      </div>
+
       </section>
 
-      <section className="content-section">
+
+      {/* ===============================
+            PHILOSOPHY
+      ================================ */}
+
+      <section className="info-section">
+
+      <div className="info-card">
+
         <h3>Philosophy</h3>
-        <ul>
+
+        <ul className="styled-list">
           {data.philosophy.split("\n").map((item, i) => (
             <li key={i}>{item}</li>
           ))}
         </ul>
+
+      </div>
+
       </section>
 
-      <section className="content-section">
+
+      {/* ===============================
+            COLLEGE AIMS
+      ================================ */}
+
+      <section className="info-section">
+
+      <div className="info-card">
+
         <h3>College Aims</h3>
-        <ul>
+
+        <ul className="styled-list">
           {data.college_aims.split("\n").map((item, i) => (
             <li key={i}>{item}</li>
           ))}
         </ul>
+
+      </div>
+
+      </section>
+
+      {/* ===============================
+        SUCCESS STORIES
+      ================================ */}
+
+      <section className="success-section">
+
+      <div className="success-container">
+
+        <div className="success-header">
+          <h2>Success Stories</h2>
+          <p>
+            Our graduates are building successful careers in Germany and across
+            Europe. Here are some inspiring journeys.
+          </p>
+        </div>
+
+        <SuccessStories />
+
+      </div>
+
       </section>
 
     </div>
