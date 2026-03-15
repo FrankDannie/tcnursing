@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./About.scss";
 import SuccessStories from "../SuccessStories/SuccessStories";
+import Staff from "../Staff/Staff";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -186,6 +187,27 @@ const About: React.FC = () => {
             <li key={i}>{item}</li>
           ))}
         </ul>
+
+      </div>
+
+      </section>
+
+      {/* ===============================
+        STAFF
+      ================================ */}
+
+<section className="success-section">
+
+      <div className="success-container">
+
+        <div className="success-header">
+          <h2>Our Staff</h2>
+          <p>
+          Our staff are the driving force behind every student’s success. With dedication, expertise, and personalized support, they help guide aspiring professionals toward building their futures.
+          </p>
+        </div>
+
+        <Staff />
 
       </div>
 

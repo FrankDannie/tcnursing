@@ -30,7 +30,6 @@ export default function Admission() {
     <section className="admission container">
       <header className="page-header">
         <h1>Admission</h1>
-        <p>Thasiah College of Nursing</p>
       </header>
 
       <section className="block">

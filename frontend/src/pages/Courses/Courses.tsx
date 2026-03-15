@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Courses.scss";
+import Admission from "../Admission/Admission";
 
 interface Course {
   id: number;
@@ -70,9 +71,16 @@ export default function Courses() {
                 <p>{course.program_details}</p>
               </div>
             )}
+            <a href="/admission" className="apply-btn">
+                Apply Now
+              </a>
           </div>
+          
+          
         );
       })}
+      < Admission/>
+      
     </div>
   );
 }

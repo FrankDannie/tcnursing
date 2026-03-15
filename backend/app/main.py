@@ -12,6 +12,7 @@ from app.routes import contact_info
 from app.routes import admission
 from app.routes import about
 from app.routes import success_stories
+from app.routes import staff_routes
 
 app = FastAPI(title="TCNursing Backend API")
 
@@ -43,3 +44,4 @@ app.include_router(contact_info.router)
 app.include_router(admission.router)
 app.include_router(about.router)
 app.include_router(success_stories.router)
+app.include_router(staff_routes.router)

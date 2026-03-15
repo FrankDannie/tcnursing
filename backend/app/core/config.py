@@ -10,4 +10,5 @@ SCREENS = {
     "about_founder": {"single": True},
     "chairman": {"single": True},
     "success_stories": {"single": False},
+    "staff": {"single": False},
 }

@@ -9,6 +9,7 @@ const items: { key: AdminSection; label: string }[] = [
   { key: "about", label: "About" },
   { key: "successstory", label: "successstory" },
   { key: "contact", label: "Contact" },
+  { key: "staff", label: "Staff" },
 ];
 
 export default function Sidebar({
