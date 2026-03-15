@@ -7,7 +7,7 @@ const Staff = () => {
   const [staff, setStaff] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/staff`)
+    fetch(`${BASE_URL}/api/staff/`)
       .then(res => res.json())
       .then(data => setStaff(data));
   }, []);
